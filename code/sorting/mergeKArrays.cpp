@@ -54,7 +54,7 @@ int main() {
 
 
     /*test*/
-    std::cout << "Sorted array" << std::endl;
+    std::cout << "merge K Arrays" << std::endl;
     print(mergeKArrays(arrays));
     return 0;
 }
