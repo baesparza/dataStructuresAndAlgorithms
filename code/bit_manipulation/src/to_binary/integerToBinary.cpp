@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include <string>
 #include <algorithm>
 
@@ -15,14 +15,4 @@ std::string integerToBinary(int value) {
 int main () {
     std::cout << "10: " << integerToBinary(10) << std::endl;
     return 0;
-}
-*/
-#include <iostream>
-#include <string>
-
-int main()
-{
-    double f = 23.43;
-    std::string f_str = std::to_string(f);
-    std::cout << f_str << '\n';
 }
