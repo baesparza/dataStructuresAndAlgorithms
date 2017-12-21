@@ -18,18 +18,20 @@ void addNode(Node** tree, int value) {
 	else if (value < (*tree)->value) addNode(&(*tree)->left, value);
 }
 
-int getMax(Node * tree) {
+Node* getMax(Node * tree) {
 	// return max value in tree
-	// always go to the right
-	if (tree->right == nullptr) return tree->value;
-	return getMax(tree->right);
+	// always go to the left
+	if (tree == nullptr) return nullptr;
+	while (tree->right) tree = tree->right;
+	return tree;
 }
 
-int getMin(Node * tree) {
+Node* getMin(Node * tree) {
 	// return min value in tree
 	// always go to the left
-	if (tree->left == nullptr) return tree->value;
-	return getMin(tree->left);
+	if (tree == nullptr) return nullptr;
+	while (tree->left) tree = tree->left;
+	return tree;
 }
 
 int main() {
