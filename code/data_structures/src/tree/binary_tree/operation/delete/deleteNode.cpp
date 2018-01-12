@@ -1,9 +1,11 @@
 #include <iostream>
 
 struct Node {
-	Node(int v) : value(v), left(nullptr), right(nullptr) {}
 	int value;
-	Node * left, * right;
+	Node * left, *right; 
+	
+	Node(int v) : value(v), left(nullptr), right(nullptr) 
+	{}
 };
 
 void addNode(Node** tree, int value) {
@@ -30,10 +32,11 @@ void addNode(Node** tree, int value) {
 	// if node value is repeated, it will not be added
 }
 
-void printInOrder(Node* tree) {
-	if (tree->left != nullptr) printInOrder(tree->left);
-	std::cout << " " << tree->value;
-	if (tree->right != nullptr) printInOrder(tree->right);
+void printInOrder(const Node* tree) {
+	if (tree == nullptr) return; // check if we have a tree
+	printInOrder(tree->left);
+	std::cout << tree->value << " ";
+	printInOrder(tree->right);
 }
 
 void deleteNode(Node** tree, int value) {
@@ -61,6 +64,7 @@ void deleteNode(Node** tree, int value) {
 		if (!(*tree)->left && !(*tree)->right) {
 			// no left or righ branch
 			// remove this reference
+			delete (*tree);
 			(*tree) = nullptr;
 			return;
 		}
@@ -84,6 +88,7 @@ void deleteNode(Node** tree, int value) {
 			(*tree)->value = current->value; // overwrite root value
 			deleteNode(&(*tree)->left, current->value); // remove copied node
 		}
+		return;
 	}
 	
 	// value never existed in tree
@@ -92,7 +97,7 @@ void deleteNode(Node** tree, int value) {
 int main() {
 
 	Node* root = nullptr;
-
+	
 	addNode(&root, 7);
 	addNode(&root, 2);
 	addNode(&root, 8);
@@ -104,11 +109,12 @@ int main() {
 	addNode(&root, 6);
 
 	printInOrder(root);
-	std::cout << std::endl;
+	std::cout << "\n";
 
-	deleteNode(&root, 8);
+	deleteNode(&root, 5);
 	printInOrder(root);
 
+	std::cin.clear();
 	std::cin.get();
 	return 0;
 }
